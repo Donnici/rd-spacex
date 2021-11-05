@@ -13,7 +13,7 @@
 		"prettier:format": "prettier --ignore **/node_modules/** --write './**/*.{ts,tsx}'",
 		"lint": "yarn prettier:format && yarn eslint:fix && yarn typecheck",
 		"type": "tsc --sourceMap false -p ./tsconfig.json && tscpaths -p ./tsconfig.json -s . -o ./dist",
-		"build": "rm -rf ./dist && yarn lint && yarn type",
+		"build": "rm -rf ./dist && yarn type",
 		"test": "jest --no-cache --u --no-watchman --detectOpenHandles --forceExit"
 	},
 	"repository": {

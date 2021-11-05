@@ -1,8 +1,15 @@
 {
-  "name": "rd-spacex",
-  "private": true,
-  "workspaces": ["packages/*"],
-  "devDependencies": {
-    "lerna": "^4.0.0"
-  }
+	"name": "rd-spacex",
+	"private": true,
+	"workspaces": [
+		"packages/*"
+	],
+	"scripts": {
+		"webservice:lint": "lerna run lint --scope @rd-spacex/webservice",
+		"webservice:build": "lerna run build --scope @rd-spacex/webservice",
+		"webservice:start": "lerna run start --scope @rd-spacex/webservice"
+	},
+	"devDependencies": {
+		"lerna": "^4.0.0"
+	}
 }
