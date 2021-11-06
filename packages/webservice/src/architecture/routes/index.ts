@@ -31,21 +31,35 @@ class Routes {
 		return allRoutes;
 	}
 
+	private formatUrl(prefix: string, resource: string, actionUrl: string) {
+		const newResource = resource === '' ? '' : `/${resource}`;
+		const newActionUrl = resource === '/' ? '' : `/${actionUrl}`;
+		let newUrl = `${prefix}${newResource}${newActionUrl}`.replace(
+			/\/\//g,
+			'/'
+		);
+		if (newUrl.endsWith('/')) {
+			newUrl = newUrl.slice(0, -1);
+		}
+		return newUrl;
+	}
+
 	private registerPublicRoute(prefix: string, route: IObjectRoute) {
-		const url = prefix + route.url;
+		const url = this.formatUrl(prefix, route.resource, route.url);
+		Logger.info(url);
 		const wrappedRoute = catchErrorWrapper(route.controllerRoute);
 		this.router[route.method](url, wrappedRoute);
 	}
 
 	private registerPrivateRoute(prefix: string, route: IObjectRoute) {
-		const url = prefix + route.url;
+		const url = this.formatUrl(prefix, route.resource, route.url);
+		Logger.info(url);
 		const wrappedRoute = catchErrorWrapper(route.controllerRoute);
 		this.router[route.method](url, wrappedRoute);
 	}
 
 	private async registerRoutes() {
 		const allRoutes = await this.getObjectRoutes();
-		Logger.info(JSON.stringify(allRoutes));
 
 		for (const router of allRoutes) {
 			const vs =

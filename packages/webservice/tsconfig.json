@@ -15,10 +15,9 @@
 		"sourceMap": false,
 		"baseUrl": ".",
 		"rootDir": ".",
-		"typeRoots": ["node_modules/@types", "./types"],
 		"paths": {
 			"#root/*": ["./*"],
-			"#exceptions/*": ["./src/architecture/exceptions/*"],
+			"#exceptions": ["./src/architecture/exceptions"],
 			"#interfaces/*": ["./src/shared/interfaces/*"],
 			"#architecture/*": ["./src/architecture/*"],
 			"#domain/*": ["./src/domain/*"],

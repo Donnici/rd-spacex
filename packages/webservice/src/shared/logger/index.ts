@@ -14,10 +14,13 @@ class Logger {
 			Logger.instance = new Logger(
 				Pino({
 					name: '@rd-spacex/webservice',
-					prettyPrint: {
-						colorize: true,
-						ignore: 'pid,hostname'
-					}
+					transport: {
+						target: 'pino-pretty',
+						options: {
+						  colorize: true,
+						  ignore: 'pid,hostname'
+						}
+					  }
 				})
 			);
 		}

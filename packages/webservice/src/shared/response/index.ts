@@ -1,12 +1,12 @@
 import { Response } from 'express';
 
 class HandleResponse {
-	public static success(
+	public static success<T>(
 		response: Response,
-		data: Record<string, unknown>,
+		data: T,
 		status = 200
-	): void {
-		response.status(status).json(data);
+	): Response {
+		return response.status(status).json(data);
 	}
 }
 

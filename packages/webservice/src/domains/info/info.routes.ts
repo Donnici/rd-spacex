@@ -1,4 +1,4 @@
-import InfoController from './InfoController';
+import InfoController from './controllers/InfoController';
 
 export default [
 	{

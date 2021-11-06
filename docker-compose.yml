@@ -1,0 +1,31 @@
+version: "3"
+services:
+#   webapp:
+#     container_name: 'webapp'
+#     hostname: rd-spacex-webapp
+#     build:
+#       context: ./packages/webapp
+#       dockerfile: Dockerfile.dev
+#     volumes:
+#       - ./packages/webapp:/home/node/app
+#       - /home/node/app/node_modules
+#     ports:
+#       - 3000:3000
+
+  webservice:
+    container_name: 'webservice'
+    hostname: rd-spacex-webservice
+    build:
+      context: ./packages/webservice
+      dockerfile: Dockerfile
+    volumes:
+      - ./packages/webservice:/home/node/app
+      - /home/node/app/node_modules
+    ports:
+      - 5050:5050
+
+volumes:
+  webservice:
+    driver: 'local'
+  webapp:
+    driver: 'local'

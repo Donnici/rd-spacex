@@ -6,6 +6,8 @@ import Routes from '#architecture/routes';
 import Logger from '#shared/logger';
 import { getMessage } from '#shared/messages';
 
+import middlewares from '../middlewares';
+
 class Server {
 	private port: number;
 
@@ -15,7 +17,7 @@ class Server {
 
 	private router!: Routes;
 
-	constructor(port: number) {
+	constructor(port = 5050) {
 		this.port = port;
 		this.app = Express();
 		this.router = new Routes();
@@ -25,9 +27,12 @@ class Server {
 		Logger.debug(`🌐 ${getMessage('running')} 🚀`);
 	};
 
-	private configure = async (): Promise<void> => {
+	public getApp = (): Express.Application => this.app;
+
+	public configure = async (): Promise<void> => {
 		const routes = await this.router.getRouters();
 		this.app.use(routes);
+		this.app.use(middlewares);
 	};
 
 	public async run() {
